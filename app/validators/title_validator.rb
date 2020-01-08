@@ -1,9 +1,13 @@
 class TitleValidator < ActiveModel::Validator 
 
   def validate(record) 
-    unless record.title.any?(/Won't Believe/, /Secret/, /Guess/, /Top \d+/)
+    unless (/Won't Believe/, /Secret/, /Guess/, /Top \d+/).include? record.title 
       record.errors[:title] << "isn't clickbait-y enough!"
     end 
+    
+    # unless record.title.any?(/Won't Believe/, /Secret/, /Guess/, /Top \d+/)
+    #   record.errors[:title] << "isn't clickbait-y enough!"
+    # end 
   end 
 
 
