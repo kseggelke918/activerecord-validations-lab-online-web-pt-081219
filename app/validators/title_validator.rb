@@ -1,7 +1,7 @@
 class TitleValidator < ActiveModel::Validator 
-  CLICK_BAIT = [/Won't Believe/, /Secret/, /Guess/, /Top \d+/]
+
   def validate(record) 
-    unless record.title.include?(CLICK_BAIT)
+    unless record.title.match?([/Won't Believe/, /Secret/, /Guess/, /Top \d+/])
       record.errors[:title] << "isn't clickbait-y enough!"
     end 
   end 
